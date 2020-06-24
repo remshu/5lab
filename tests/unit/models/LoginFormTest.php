@@ -3,6 +3,8 @@
 namespace tests\unit\models;
 
 use app\models\LoginForm;
+use app\models\User;
+use yii\codeception\DbTestCase;
 
 class LoginFormTest extends \Codeception\Test\Unit
 {
@@ -39,8 +41,8 @@ class LoginFormTest extends \Codeception\Test\Unit
     public function testLoginCorrect()
     {
         $this->model = new LoginForm([
-            'username' => 'demo',
-            'password' => 'demo',
+            'username' => 'user1',
+            'password' => '1234',
         ]);
 
         expect_that($this->model->login());

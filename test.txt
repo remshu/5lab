@@ -1,0 +1,114 @@
+Codeception PHP Testing Framework v4.1.4
+Powered by PHPUnit 8.5.4 by Sebastian Bergmann and contributors.
+Running with seed: 
+
+
+[1mAcceptance Tests (3) [22m-----------------------------------------------------------------
+[35;1mAboutCest:[39;22m Ensure that about works
+Signature: [32mAboutCest:ensureThatAboutWorks[39m
+Test: [32mtests/acceptance/AboutCest.php:ensureThatAboutWorks[39m
+[33mScenario --[39m
+[1m I [22mam on page "index.php?r=site%2Fabout"
+[1m I [22msee "About","h1"
+[32;1m PASSED [39;22m
+
+[35;1mImagesCest:[39;22m Tabl for logins and images
+Signature: [32mImagesCest:TablForLoginsAndImages[39m
+Test: [32mtests/acceptance/ImagesCest.php:TablForLoginsAndImages[39m
+[33mScenario --[39m
+[1m I [22mam on page "index.php?r=images%2Flogin"
+[1m I [22msee "Please fill out the following fields to login:","p"
+[1m I [22mfill field "input[name="LoginForm[username]"]","user1"
+[1m I [22mfill field "input[name="LoginForm[password]"]","1234"
+[1m I [22mclick "login-button"
+[1m I [22msee "Images"
+[1m I [22msee "Logout (user1)"
+[1m I [22mclick "//a[@title="View"]"
+[32;1m PASSED [39;22m
+
+[35;1mLoginCest:[39;22m Ensure that login works
+Signature: [32mLoginCest:ensureThatLoginWorks[39m
+Test: [32mtests/acceptance/LoginCest.php:ensureThatLoginWorks[39m
+[33mScenario --[39m
+[1m I [22mam on page "index.php?r=images%2Flogin"
+[1m I [22msee "Login","h1"
+[1m [22mI am going to try to login with correct credentials
+[1m I [22mfill field "input[name="LoginForm[username]"]","user1"
+[1m I [22mfill field "input[name="LoginForm[password]"]","1234"
+[1m I [22mclick "login-button"
+[1m [22mI expect to see user info
+[1m I [22msee "Logout (user1)"
+[32;1m PASSED [39;22m
+
+--------------------------------------------------------------------------------------
+
+[1mFunctional Tests (5) [22m-----------------------------------------------------------------
+[35;1mImageButtonsCest:[39;22m Test click update
+Signature: [32mapp\tests\functionals\ImageButtonsCest:testClickUpdate[39m
+Test: [32mtests/functional/ImagesIndexCest.php:testClickUpdate[39m
+[33mScenario --[39m
+[1m I [22mam on page ["images/login"]
+[1m I [22msubmit form "#login-form",{"LoginForm[username]":"user1","LoginForm[password]":...}
+[1m I [22mam on page "images/index"
+[1m I [22mam on route "images/index"
+[1m I [22msee "Create Images"
+[1m I [22mclick "Create Images"
+[1m I [22msee "Save"
+[1m I [22msee in current url "images%2Fcreate"
+[32;1m PASSED [39;22m
+
+[35;1mLoginFormCest:[39;22m Open login page
+Signature: [32mLoginFormCest:openLoginPage[39m
+Test: [32mtests/functional/LoginFormCest.php:openLoginPage[39m
+[33mScenario --[39m
+[1m I [22mam on route "images/login"
+[1m I [22msee "Login","h1"
+[32;1m PASSED [39;22m
+
+[35;1mLoginFormCest:[39;22m Login with empty credentials
+Signature: [32mLoginFormCest:loginWithEmptyCredentials[39m
+Test: [32mtests/functional/LoginFormCest.php:loginWithEmptyCredentials[39m
+[33mScenario --[39m
+[1m I [22mam on route "images/login"
+[1m I [22msubmit form "#login-form",[]
+[1m [22mI expect to see validations errors
+[1m I [22msee "Username cannot be blank."
+[1m I [22msee "Password cannot be blank."
+[32;1m PASSED [39;22m
+
+[35;1mLoginFormCest:[39;22m Login with wrong credentials
+Signature: [32mLoginFormCest:loginWithWrongCredentials[39m
+Test: [32mtests/functional/LoginFormCest.php:loginWithWrongCredentials[39m
+[33mScenario --[39m
+[1m I [22mam on route "images/login"
+[1m I [22msubmit form "#login-form",{"LoginForm[username]":"admin","LoginForm[password]":...}
+[1m [22mI expect to see validations errors
+[1m I [22msee "Incorrect username or password"
+[32;1m PASSED [39;22m
+
+[35;1mLoginFormCest:[39;22m Login successfully
+Signature: [32mLoginFormCest:loginSuccessfully[39m
+Test: [32mtests/functional/LoginFormCest.php:loginSuccessfully[39m
+[33mScenario --[39m
+[1m I [22mam on route "images/login"
+[1m I [22msubmit form "#login-form",{"LoginForm[username]":"user1","LoginForm[password]":...}
+[1m I [22msee "Logout (user1)"
+[1m I [22mdon't see element "form#login-form"
+[32;1m PASSED [39;22m
+
+--------------------------------------------------------------------------------------
+
+[1mUnit Tests (7) [22m-----------------------------------------------------------------------
+- [35;1mContactFormTest:[39;22m Email is sent on contact[32;1m✔[39;22m [35;1mContactFormTest:[39;22m Email is sent on contact [32m(0.37s)[39m
+- [35;1mLoginFormTest:[39;22m Login no user[32;1m✔[39;22m [35;1mLoginFormTest:[39;22m Login no user [32m(0.00s)[39m
+- [35;1mLoginFormTest:[39;22m Login wrong password[32;1m✔[39;22m [35;1mLoginFormTest:[39;22m Login wrong password [32m(0.00s)[39m
+- [35;1mLoginFormTest:[39;22m Login correct[32;1m✔[39;22m [35;1mLoginFormTest:[39;22m Login correct [32m(0.01s)[39m
+- [35;1mUserTest:[39;22m Find user by id[32;1m✔[39;22m [35;1mUserTest:[39;22m Find user by id [32m(0.00s)[39m
+- [35;1mUserTest:[39;22m Find user by username[32;1m✔[39;22m [35;1mUserTest:[39;22m Find user by username [32m(0.00s)[39m
+- [35;1mUserTest:[39;22m Validate user[32;1m✔[39;22m [35;1mUserTest:[39;22m Validate user [32m(0.00s)[39m
+--------------------------------------------------------------------------------------
+
+
+Time: 3.42 seconds, Memory: 26.00 MB
+
+[30;42mOK (15 tests, 40 assertions)[0m

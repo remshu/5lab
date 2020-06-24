@@ -1,0 +1,9 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - Yii2:
+            part: orm
+            entryScript: index.php
+            cleanup: false
+        - PhpBrowser:
+            url: http://kappa.cs.petrsu.ru/~safonov/web/basic/web/index.php

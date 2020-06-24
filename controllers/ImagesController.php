@@ -50,8 +50,9 @@ class ImagesController extends Controller
 
         $searchModel = new ImagesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
+	//$dataProvider = Images::find()->where(['creator' => Yii::$app->user->id])->orderBy('id')->all();
+        $dataProvider->query->andWhere(['creator' => Yii::$app->user->id]);
+	return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -113,6 +114,7 @@ class ImagesController extends Controller
             $last = (string)array_pop($exp);
             $path = "{$model->img->baseName}{$last}.{$model->img->extension}";
 	    $model->img = $path;
+	    $model->creator = Yii::$app->user->id;
 	    $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
     	}
